@@ -1275,6 +1275,11 @@ a.c0151:not(.c0153):active {
 	z-index: 0;
 	position: relative;
 	text-align: center;
+    user-select: none;
+    -drag: none;
+    -moz-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
 }
 @media (min-height: 1100px) {
 	.c012 {
@@ -1285,6 +1290,10 @@ a.c0151:not(.c0153):active {
 	.c012 {
 		top: calc(50% - 145px);
 	}
+}
+
+.choose {
+    text-align: center;
 }
 .c013 {
 	top: calc(100% - 116px);
@@ -1645,13 +1654,13 @@ a.c0151:not(.c0153):active {
 	left: 0px;
 	width: 100%;
 	height: 100%;
-	z-index: -2;
+	z-index: 1111;
 	position: fixed;
 	background: radial-gradient(
 			51.46% 20767.69% at 19.33% 0%,
 			rgba(95, 239, 239, 0.3) 5.81%,
 			rgba(112, 255, 217, 0.3) 56.2%,
-			rgba(188, 255, 246, 0.3) 100%
+			rgba(189, 188, 255, 0.3) 100%
 		),
 		#ffffff;
 }

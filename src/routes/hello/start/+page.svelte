@@ -1,10 +1,30 @@
 <script lang="ts">
     import { Metadata } from "$lib";
-    import { TextBox, TextBoxButton } from "fluent-svelte";
+    import { TextBox, TextBoxButton, InfoBar } from "fluent-svelte";
 
-    let usernamechoice = "";
+    let value = "";
+
+	function GetUsernameAvailability(username: string) {
+		if (username === "" || username.startsWith("_") || username.includes("esme") || username.includes(".") || username.includes("%") || username.includes("#") || username.includes("$") || username.includes("&") || username.includes("*") || username.includes("+") || username.includes("/") || username.includes("=") || username.includes("?") || username.includes("^") || username.includes("`") || username.includes("{") || username.includes("|") || username.includes("}") || username.includes("~") || username.includes(" ") || username.includes(":") || username.includes(";") || username.includes("<") || username.includes(">") || username.includes("@") || username.includes("!")) { // Special characters
+			return false;
+		} else {
+			return true;
+		}
+	}
+
+	function NextStepsPrepare() {
+		if (GetUsernameAvailability(value)) {
+			NextSteps();
+		} else {
+			alert()
+		}
+	}
 </script>
-<Metadata title="Create your Riverside account"/>
+{#if GetUsernameAvailability(value) && value !== ""}
+	<Metadata title="Welcome, @{value}!"/>
+{:else}
+	<Metadata title="Create your Riverside account"/>
+{/if}
 <div id="app-root">
 	<div>
 		<div class="c0112" style="background-color: rgb(255, 255, 255)">
@@ -699,12 +719,17 @@
 				</div>
 				<div class="c0125">Choose a username</div>
                 <br/>
-                <TextBox placeholder="May not contain dots '.', underscores '_', percents '%' and some other characters" disabled>
-                    <TextBoxButton slot="buttons" on:click>
-                        <!-- https://github.com/microsoft/fluentui-system-icons -->
-                        <svg width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4.53 12.97a.75.75 0 0 0-1.06 1.06l4.5 4.5a.75.75 0 0 0 1.06 0l11-11a.75.75 0 0 0-1.06-1.06L8.5 16.94l-3.97-3.97Z" fill="currentcolor"/></svg>
-                    </TextBoxButton>
+                <TextBox bind:value placeholder="May not contain dots '.', underscores '_', percents '%' and some other characters">
+					{#if GetUsernameAvailability(value)}
+						<TextBoxButton slot="buttons" on:click={() => NextStepsPrepare()}>
+							<!-- https://github.com/microsoft/fluentui-system-icons -->
+							<svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M14.05 3.49c.28.3.27.77-.04 1.06l-7.93 7.47A.85.85 0 0 1 4.9 12L2.22 9.28a.75.75 0 1 1 1.06-1.06l2.24 2.27 7.47-7.04a.75.75 0 0 1 1.06.04Z"/></svg>
+						</TextBoxButton>
+					{/if}
                 </TextBox>
+				{#if !GetUsernameAvailability(value) && value !== ""}
+					<InfoBar title="Username is not available" message="Try choosing a different username.." severity="critical" closable="false"/>
+				{/if}
 			</div>
 		</div>
 	</div>
