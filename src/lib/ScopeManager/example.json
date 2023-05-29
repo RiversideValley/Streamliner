@@ -1,0 +1,10 @@
+[
+    {
+        "name": "default",
+        "desc": "Lorem Ipsum",
+        "type": "generic",
+        "set": "_",
+        "obj": 2,
+        "permissable": "IdCard"
+    }
+]
