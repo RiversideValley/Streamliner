@@ -1,20 +1,27 @@
 <script lang="ts">
-    import { Metadata } from "$lib";
-    import { TextBox, TextBoxButton, InfoBar } from "fluent-svelte";
+    import { Metadata, external } from "$lib";
+    import { TextBox, TextBoxButton, InfoBar, Flyout, Button } from "fluent-svelte";
 
     let value = "";
+	let open = false
+	let infoBarClosable = false;
 
 	function GetUsernameAvailability(username: string) {
-		if (username === "" || username.startsWith("_") || username.includes("esme") || username.includes(".") || username.includes("%") || username.includes("#") || username.includes("$") || username.includes("&") || username.includes("*") || username.includes("+") || username.includes("/") || username.includes("=") || username.includes("?") || username.includes("^") || username.includes("`") || username.includes("{") || username.includes("|") || username.includes("}") || username.includes("~") || username.includes(" ") || username.includes(":") || username.includes(";") || username.includes("<") || username.includes(">") || username.includes("@") || username.includes("!")) { // Special characters
+		if (username === "" || username.startsWith("_") || username.includes(".") || username.includes("%") || username.includes("#") || username.includes("$") || username.includes("&") || username.includes("*") || username.includes("+") || username.includes("/") || username.includes("=") || username.includes("?") || username.includes("^") || username.includes("`") || username.includes("{") || username.includes("|") || username.includes("}") || username.includes("~") || username.includes(" ") || username.includes(":") || username.includes(";") || username.includes("<") || username.includes(">") || username.includes("@") || username.includes("!")) { // Special characters
 			return false;
-		} else {
+		} else if (username.includes("esme") || username.includes("maloote") || username.includes("riverside") || username.includes("admin")) // Reserved words
+			return false;
+		else if (username.length < 3 || username.length > 20) // Length
+			return false;
+		else if (username == "cloud" || username == "components" || username == "www" || username == "active" || username == "gateway" || username == "go" || username == "flare" || username == "insider" || username == "secure") { // Esmerelda Cloud Services Legacy
+			return false;
+		} else
 			return true;
-		}
 	}
 
 	function NextStepsPrepare() {
 		if (GetUsernameAvailability(value)) {
-			NextSteps();
+			alert("yay")
 		} else {
 			alert()
 		}
@@ -719,7 +726,15 @@
 				</div>
 				<div class="c0125">Choose a username</div>
                 <br/>
-                <TextBox bind:value placeholder="May not contain dots '.', underscores '_', percents '%' and some other characters">
+                <TextBox bind:value placeholder="May not contain dots '.', percents '%' and some other characters">
+					{#if !GetUsernameAvailability(value)}
+						<a href="https://go.esmerelda.tech/anonymous/gcOIcd" {...external}>
+							<TextBoxButton slot="buttons">
+								<!-- https://github.com/microsoft/fluentui-system-icons -->
+								<svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M8 2a6 6 0 1 1 0 12A6 6 0 0 1 8 2Zm0 8.5A.75.75 0 1 0 8 12a.75.75 0 0 0 0-1.5Zm0-6a2 2 0 0 0-2 2 .5.5 0 0 0 1 0 1 1 0 0 1 2 0c0 .37-.08.58-.37.9l-.11.12-.27.27c-.54.57-.75.98-.75 1.71a.5.5 0 0 0 1 0c0-.37.08-.58.37-.9l.11-.12.27-.27c.54-.57.75-.98.75-1.71a2 2 0 0 0-2-2Z"/></svg>
+							</TextBoxButton>
+						</a>
+					{/if}
 					{#if GetUsernameAvailability(value)}
 						<TextBoxButton slot="buttons" on:click={() => NextStepsPrepare()}>
 							<!-- https://github.com/microsoft/fluentui-system-icons -->
@@ -728,7 +743,7 @@
 					{/if}
                 </TextBox>
 				{#if !GetUsernameAvailability(value) && value !== ""}
-					<InfoBar title="Username is not available" message="Try choosing a different username.." severity="critical" closable="false"/>
+					<InfoBar title="Username is not available" message="Try choosing a different username.." severity="critical" closable={infoBarClosable} />
 				{/if}
 			</div>
 		</div>

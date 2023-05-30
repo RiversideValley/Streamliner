@@ -724,7 +724,7 @@
 				<div class="c0125">Let's get you started.</div>
 				<br />
 				<Button variant="accent" href="/hello/start">Create an account</Button>
-				<Button variant="standard" on:click={() => alert()}>Sign in</Button>
+				<Button variant="standard" on:click={() => alert("Signing in is not supported yet.")}>Sign in</Button>
 			</div>
 		</div>
 	</div>
