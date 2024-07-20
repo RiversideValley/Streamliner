@@ -53,13 +53,12 @@ There are multiple ways to participate in the community:
 <!-- 
 └──
 ├──
--->-->
 
 ### 🗃️ Contributors
 
 <a href="https://github.com/RiversideValley/Streamliner/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=RiversideValley/Streamliner" />
-</a>
+</a>-->
 
 ## 🦜 Feedback
 
