@@ -1,0 +1,45 @@
+<Project Sdk="Uno.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>
+      net8.0-android;
+      net8.0-ios;
+      net8.0-browserwasm;
+    </TargetFrameworks>
+
+    <OutputType>Exe</OutputType>
+    <UnoSingleProject>true</UnoSingleProject>
+
+    <!-- Display name -->
+    <ApplicationTitle>Streamliner</ApplicationTitle>
+    <!-- App Identifier -->
+    <ApplicationId>RiversideValley.Streamliner</ApplicationId>
+    <!-- Versions -->
+    <ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
+    <ApplicationVersion>1</ApplicationVersion>
+
+    <!--
+      UnoFeatures let's you quickly add and manage implicit package references based on the features you want to use.
+      https://aka.platform.uno/singleproject-features
+    -->
+    <UnoFeatures>
+      Material;
+      Dsp;
+      Hosting;
+      Toolkit;
+      Logging;
+      Mvvm;
+      Configuration;
+      Http;
+      Serialization;
+      Localization;
+      AuthenticationMsal;
+      Navigation;
+      ThemeService;
+    </UnoFeatures>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Streamliner.DataContracts\Streamliner.DataContracts.csproj" />
+  </ItemGroup>
+
+</Project>

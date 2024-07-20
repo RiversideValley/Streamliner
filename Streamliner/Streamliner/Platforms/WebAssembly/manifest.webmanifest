@@ -1,0 +1,10 @@
+{
+  "background_color": "#ffffff",
+  "description": "Streamliner",
+  "display": "standalone",
+  "name": "Streamliner",
+  "short_name": "Streamliner",
+  "start_url": "/index.html",
+  "theme_color": "#ffffff",
+  "scope": "/"
+}
