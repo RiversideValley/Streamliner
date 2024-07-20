@@ -4,6 +4,4 @@
 
 <Metadata />
 
-<Splash form="in"/>
-
 <PrepareCredentials />

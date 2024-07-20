@@ -731,6 +731,6 @@
 </div>
 
 <style lang="scss">
-	@use './welcome.scss';
-	@use '../fluent.scss';
+	@use '../../styles/welcome.scss';
+	@use '../../styles/fluent.scss';
 </style>

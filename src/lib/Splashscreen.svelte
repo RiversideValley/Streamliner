@@ -1,5 +1,7 @@
 <script lang="ts">
+    import { ProgressRing, ProgressBar } from "fluent-svelte";
     import { Metadata } from "$lib";
+    import Bloom from "./Bloom.svelte"
 
     export let form = "in";
 </script>
@@ -13,10 +15,17 @@
         <img src="https://cloud.esmerelda.tech/UI/Fluent/Emoji/Animated/Travel%20and%20places/Airplane%20Departure.png" alt="Streamliner"/>
     {:else if form === "any"}
         <img src="https://cloud.esmerelda.tech/UI/Fluent/Emoji/Animated/Travel%20and%20places/Airplane.png" alt="Streamliner"/>
+    {:else if form === "bloom"} 
+        <Bloom />
+    {:else if form == "ring"}
+        <ProgressRing size={64} />
+    {:else if form == "bar"}
+        <ProgressBar />
     {/if}
 </div>
 
 <style>
+    @import 'src/styles/fluent.scss';
     .splashscreen {
         position: fixed;
         top: 0;
@@ -42,3 +51,4 @@
         -webkit-user-select: none;
     }
 </style>
+
